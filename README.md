@@ -15,6 +15,8 @@ The widget offers many configurable options, which allow you to modify all the c
 - Change the value of the Donate-button,
 - Add a Thank you-message.
 
+Oh, and it sticks to the top of the screen, once the `div` reaches the top of the screen!
+
 I'm not offering any support on this widget, so all configuration and further customization is up to you.
 
 Enjoy!
