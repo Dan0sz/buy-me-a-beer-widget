@@ -1,0 +1,41 @@
+/**
+ * @author Daan van den Bergh
+ * @copyright Daan van den Bergh (c) 2019
+ * @url https://daan.dev
+ * @package buy-me-a-beer-widget
+ */
+
+.buy-me-a-beer-widget-clone {
+    display: none;
+    position: fixed;
+    z-index: 100000;
+}
+
+.buy-me-a-beer-widget,
+.buy-me-a-beer-widget-clone {
+	text-align: center;
+	border: 1px #eee solid;
+	width: 100%;
+	padding: 20px 10px 5px;
+	background: #fff url('../assets/beer.png') no-repeat -125px 25px;
+	box-sizing: border-box;
+}
+
+.bmab-block p {
+    font-size: 0.8em;
+    line-height: 1.25;
+}
+
+.bmab-paypal-form br {
+	display: none;
+}
+
+.bmab-paypal-form select {
+    font-size: 15px;
+    padding: 11px 10px 13px;
+}
+
+button.bmab-button {
+    display: initial;
+    margin: 11px 0;
+}
