@@ -28,9 +28,11 @@ $window.scroll(function() {
     widgetOffset = widget.offset().top - navbarHeight;
     
     if ($window.scrollTop() >= widgetOffset) {
+        widget.css('opacity', '0');
         widgetClone.css('top', navbarHeight + 10);
         widgetClone.show();
     } else {
+        widget.css('opacity', '1');
         widgetClone.hide();
     }
 });
