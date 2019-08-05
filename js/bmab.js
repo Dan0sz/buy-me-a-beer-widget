@@ -24,12 +24,11 @@ $window.scroll(function() {
     /**
      * Only appear if widget reaches top of screen.
      */
-    navbarHeight = jQuery('nav.navbar').height();
-    widgetOffset = widget.offset().top - navbarHeight;
+    widgetOffset = widget.offset().top;
     
     if ($window.scrollTop() >= widgetOffset) {
         widget.css('opacity', '0');
-        widgetClone.css('top', navbarHeight + 10);
+        widgetClone.css('top', 10);
         widgetClone.show();
     } else {
         widget.css('opacity', '1');

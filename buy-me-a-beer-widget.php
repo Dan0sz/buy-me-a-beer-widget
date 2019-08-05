@@ -28,9 +28,6 @@ function bmab_load_styles()
         'buy-me-a-beer-styles',
         plugins_url() . '/buy-me-a-beer-widget/css/bmab.min.css',
         array(
-            'sparkling-child-bootstrap',
-            'sparkling-child-icons',
-            'sparkling-child-style'
         ),
         BUY_ME_A_BEER_STATIC_VERSION,
         'all'
@@ -68,7 +65,7 @@ class BuyMeABeer_Widget extends WP_Widget
             )
         );
     }
-    
+
     /**
      * Frontend Output
      *
@@ -81,25 +78,25 @@ class BuyMeABeer_Widget extends WP_Widget
             'buy-me-a-beer-widget',
             'buy-me-a-beer-widget-clone'
         ];
-        
+
         foreach ($widgets as $widget) {
             $title = apply_filters('widget_title', $instance['title']);
-            
+
             $args['before_widget'] = str_replace('buy-me-a-beer-widget', $widget, $args['before_widget']);
-            
+
             // before and after widget arguments are defined by themes
             echo $args['before_widget'];
-            
+
             if (!empty($title)) {
                 echo $args['before_title'] . $title . $args['after_title'];
             }
-            
+
             include(plugin_dir_path(__FILE__) . 'includes/widget.phtml');
-            
+
             echo $args['after_widget'];
         }
     }
-    
+
     /**
      * Backend Form
      *
@@ -111,7 +108,7 @@ class BuyMeABeer_Widget extends WP_Widget
     {
         include(plugin_dir_path(__FILE__) . 'includes/options.phtml');
     }
-    
+
     /**
      * Process changes
      *
@@ -132,7 +129,7 @@ class BuyMeABeer_Widget extends WP_Widget
         $instance['pm_comment']       = (!empty($newInstance['pm_comment'])) ? strip_tags($newInstance['pm_comment']) : '';
         $instance['button_value']     = (!empty($newInstance['button_value'])) ? strip_tags($newInstance['button_value']) : '';
         $instance['after_form']       = (!empty($newInstance['after_form'])) ? strip_tags($newInstance['after_form']) : '';
-        
+
         return $instance;
     }
 }
