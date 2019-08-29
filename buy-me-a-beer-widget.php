@@ -27,8 +27,7 @@ function bmab_load_styles()
     wp_register_style(
         'buy-me-a-beer-styles',
         plugins_url() . '/buy-me-a-beer-widget/css/bmab.min.css',
-        array(
-        ),
+        array(),
         BUY_ME_A_BEER_STATIC_VERSION,
         'all'
     );
@@ -45,6 +44,63 @@ function bmab_load_styles()
     wp_enqueue_script('buy-me-a-beer-scripts');
 }
 add_action('wp_enqueue_scripts', 'bmab_load_styles');
+
+/**
+ * @param array $buttonIds
+ * @param array $currencies
+ * @param array $symbols
+ *
+ * @return mixed
+ */
+function bmab_generate_form_data(array $buttonIds, array $currencies, array $symbols)
+{
+    $i = 0;
+    foreach ($buttonIds as $button) {
+        $forms[$currencies[$i]] = array(
+            'buttonId' => $button,
+            'symbol'   => $symbols[$i]
+        );
+        $i++;
+    }
+
+    return $forms;
+}
+
+/**
+ * @return string
+ */
+function bmab_get_user_ip_address()
+{
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    } else {
+        $ip = $_SERVER['REMOTE_ADDR'];
+    }
+
+    return $ip;
+}
+
+/**
+ * @param      $token
+ * @param null $ip
+ *
+ * @return string
+ */
+function bmab_get_currency_for_ip($token, $ip = null)
+{
+    include(plugin_dir_path(__FILE__) . 'includes/countries.php');
+
+    $response = wp_remote_get("https://ipinfo.io/$ip/country?token=$token");
+    $country  = rtrim($response['body']);
+
+    if (in_array($country, $countries)) {
+        return 'EUR';
+    }
+
+    return 'USD';
+}
 
 /**
  * Class BuyMeABeer_Widget
@@ -119,16 +175,26 @@ class BuyMeABeer_Widget extends WP_Widget
      */
     public function update($newInstance, $oldInstance)
     {
-        $instance                     = array();
-        $instance['hosted_button_id'] = (!empty($newInstance['hosted_button_id'])) ? strip_tags($newInstance['hosted_button_id']) : '';
-        $instance['title']            = (!empty($newInstance['title'])) ? strip_tags($newInstance['title']) : '';
-        $instance['description']      = (!empty($newInstance['description'])) ? strip_tags($newInstance['description']) : '';
-        $instance['amount_title']     = (!empty($newInstance['amount_title'])) ? strip_tags($newInstance['amount_title']) : '';
-        $instance['amount_comment']   = (!empty($newInstance['amount_comment'])) ? strip_tags($newInstance['amount_comment']) : '';
-        $instance['pm_title']         = (!empty($newInstance['pm_title'])) ? strip_tags($newInstance['pm_title']) : '';
-        $instance['pm_comment']       = (!empty($newInstance['pm_comment'])) ? strip_tags($newInstance['pm_comment']) : '';
-        $instance['button_value']     = (!empty($newInstance['button_value'])) ? strip_tags($newInstance['button_value']) : '';
-        $instance['after_form']       = (!empty($newInstance['after_form'])) ? strip_tags($newInstance['after_form']) : '';
+        $instance = array();
+        $options  = array(
+            'hosted_button_id',
+            'currencies',
+            'currency_symbols',
+            'title',
+            'description',
+            'amount_title',
+            'amount_comment',
+            'pm_title',
+            'pm_comment',
+            'button_value',
+            'after_form',
+            'ip_info',
+            'ip_info_token'
+        );
+
+        foreach ($options as $option) {
+            $instance[$option] = (!empty($newInstance[$option])) ? strip_tags($newInstance[$option]) : '';
+        }
 
         return $instance;
     }

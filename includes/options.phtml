@@ -1,15 +1,38 @@
 <?php
-
 $hostedButtonId = (isset($instance['hosted_button_id'])) ? $instance['hosted_button_id'] : '1XXX234XXX4X5X';
 ?>
 <p>
     <label for="<?= $this->get_field_id('hosted_button_id'); ?>">
-        <?php _e('Hosted Button ID:'); ?>
+        <?php _e('Hosted Button IDs:'); ?>
     </label>
     <input class="widefat"
            id="<?= $this->get_field_id('hosted_button_id'); ?>"
            name="<?= $this->get_field_name('hosted_button_id'); ?>"
            type="text" value="<?= esc_attr($hostedButtonId); ?>"/>
+</p>
+<?php
+$currencies = (isset($instance['currencies'])) ? $instance['currencies'] : 'USD,EUR';
+?>
+<p>
+    <label for="<?= $this->get_field_id('currencies'); ?>">
+        <?php _e('Used currencies:'); ?>
+    </label>
+    <input class="widefat"
+           id="<?= $this->get_field_id('currencies'); ?>"
+           name="<?= $this->get_field_name('currencies'); ?>"
+           type="text" value="<?= esc_attr($currencies); ?>"/>
+</p>
+<?php
+$currency_symbols = (isset($instance['currency_symbols'])) ? $instance['currency_symbols'] : '$,€'
+?>
+<p>
+    <label for="<?= $this->get_field_id('currency_symbols'); ?>">
+        <?php _e('Used symbols:'); ?>
+    </label>
+    <input class="widefat"
+           id="<?= $this->get_field_id('currency_symbols'); ?>"
+           name="<?= $this->get_field_name('currency_symbols'); ?>"
+           type="text" value="<?= esc_attr($currency_symbols); ?>"/>
 </p>
 <?php
 $title = (isset($instance['title'])) ? $instance['title'] : __('Buy Me A Beer!', 'bmab_widget');
@@ -102,4 +125,28 @@ $afterForm = (isset($instance['after_form'])) ? $instance['after_form'] : __('Th
     <textarea class="widefat"
               id="<?= $this->get_field_id('after_form'); ?>"
               name="<?= $this->get_field_name('after_form'); ?>"><?= esc_attr($afterForm); ?></textarea>
+</p>
+<?php
+$ipInfo = (isset($instance['ip_info'])) ? $instance['ip_info'] : false;
+?>
+<p>
+    <input class="checkbox"
+           id="<?= $this->get_field_id('ip_info'); ?>"
+           name="<?= $this->get_field_name('ip_info'); ?>"
+           type="checkbox" <?= $ipInfo ? 'checked="checked"' : ''; ?> />
+    <label for="<?= $this->get_field_id('ip_info'); ?>">
+        <?php _e('Enable IPinfo.io support'); ?>
+    </label>
+</p>
+<?php
+$ipInfoToken = (isset($instance['ip_info_token'])) ? $instance['ip_info_token'] : '';
+?>
+<p>
+    <label for="<?= $this->get_field_id('ip_info_token'); ?>">
+        <?php _e('IPinfo.io token:'); ?>
+    </label>
+    <input class="widefat"
+           id="<?= $this->get_field_id('ip_info_token'); ?>"
+           name="<?= $this->get_field_name('ip_info_token'); ?>"
+           type="text" value="<?= esc_attr($ipInfoToken); ?>"/>
 </p>
