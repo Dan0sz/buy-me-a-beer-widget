@@ -88,11 +88,12 @@ function bmab_get_user_ip_address()
  *
  * @return string
  */
-function bmab_get_currency_for_ip($token, $ip = null)
+function bmab_get_currency_for_ip($token)
 {
     include(plugin_dir_path(__FILE__) . 'includes/countries.php');
 
-    $response = wp_remote_get("https://ipinfo.io/$ip/country?token=$token");
+    $response = wp_remote_get("https://ipinfo.io/country?token=$token");
+
     $country  = rtrim($response['body']);
 
     if (in_array($country, $countries)) {

@@ -6,17 +6,12 @@
 $countries = array(
     'AT',
     'BE',
-    'HR',
-    'BG',
     'CY',
-    'CZ',
-    'DK',
     'EE',
     'FI',
     'FR',
     'DE',
     'GR',
-    'HU',
     'IE',
     'IT',
     'LV',
@@ -24,12 +19,8 @@ $countries = array(
     'LU',
     'MT',
     'NL',
-    'PL',
     'PT',
-    'RO',
     'SK',
     'SI',
-    'ES',
-    'SE',
-    'GB'
+    'ES'
 );
