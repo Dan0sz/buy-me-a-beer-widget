@@ -1,9 +1,9 @@
 <?php
 /**
- * List of European countries to show EUR instead of USD.
+ * List of countries to show EUR or GBP instead of USD.
  */
 
-$countries = array(
+$euCountries = array(
     'AT',
     'BE',
     'CY',
@@ -23,4 +23,8 @@ $countries = array(
     'SK',
     'SI',
     'ES'
+);
+
+$gbCountries = array(
+    'GB'
 );

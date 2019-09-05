@@ -96,8 +96,12 @@ function bmab_get_currency_for_ip($token)
 
     $country  = rtrim($response['body']);
 
-    if (in_array($country, $countries)) {
+    if (in_array($country, $euCountries)) {
         return 'EUR';
+    }
+
+    if (in_array($country, $gbCountries)) {
+        return 'GBP';
     }
 
     return 'USD';
