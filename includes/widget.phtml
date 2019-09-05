@@ -4,7 +4,7 @@ $currencies = explode(',', $instance['currencies']);
 $symbols = explode(',', $instance['currency_symbols']);
 
 $forms = bmab_generate_form_data($buttonIds, $currencies, $symbols);
-$currency = bmab_get_currency_for_ip($instance['ip_info_token'], bmab_get_user_ip_address());
+$currency = bmab_get_currency_for_ip($instance['ip_info_token']);
 ?>
 <div class="bmab-block">
     <?php if($description = $instance['description']): ?>
