@@ -55,7 +55,7 @@ $currency = bmab_get_currency_for_ip($instance['ip_info_token']);
         <?php endif; ?>
         <input type="hidden" name="currency_code" value="<?= $currency; ?>" />
         <button class="bmab-button btn-lg" type="submit" name="submit" alt="PayPal - The safer, easier way to pay online!">
-            <span class="glyphicon glyphicon-heart"></span>
+            <i class="fa fa-heart"></i>
             <span class="bmab-button-text"><?= $instance['button_value']; ?></span>
         </button>
         <img alt="" border="0" src="https://www.paypalobjects.com/nl_NL/i/scr/pixel.gif" width="1" height="1" />
